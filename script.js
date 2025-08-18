@@ -9,6 +9,9 @@ let player1 = "", player2 = "";
 let isPlayerOneTurn = true;
 let moves = 0;
 
+const playerOneMoves = [];
+const playerTwoMoves = [];
+
 const winningCombos = [
   [1, 2, 3],
   [4, 5, 6],
@@ -20,10 +23,7 @@ const winningCombos = [
   [3, 5, 7]
 ];
 
-const playerOneClicks = [];
-const playerTwoClicks = [];
-
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", function (e) {
   e.preventDefault();
   player1 = player1Input.value.trim();
   player2 = player2Input.value.trim();
@@ -36,18 +36,18 @@ boxes.forEach(box => {
   box.addEventListener("click", handleBoxClick);
 });
 
-function handleBoxClick(e) {
-  const box = e.target;
-  const boxId = Number(box.id);
+function handleBoxClick(event) {
+  const box = event.target;
+  const boxId = parseInt(box.id);
 
   if (box.textContent !== "") return;
 
   if (isPlayerOneTurn) {
     box.textContent = "X";
-    playerOneClicks.push(boxId);
-    if (checkWinner(playerOneClicks)) {
+    playerOneMoves.push(boxId);
+    if (checkWinner(playerOneMoves)) {
       playerTurnInfo.textContent = `${player1} congratulations you won!`;
-      highlightWinningBoxes(getWinningCombo(playerOneClicks));
+      highlightBoxes(playerOneMoves);
       disableBoard();
       return;
     }
@@ -55,10 +55,10 @@ function handleBoxClick(e) {
     playerTurnInfo.textContent = `${player2}, you're up!`;
   } else {
     box.textContent = "O";
-    playerTwoClicks.push(boxId);
-    if (checkWinner(playerTwoClicks)) {
+    playerTwoMoves.push(boxId);
+    if (checkWinner(playerTwoMoves)) {
       playerTurnInfo.textContent = `${player2} congratulations you won!`;
-      highlightWinningBoxes(getWinningCombo(playerTwoClicks));
+      highlightBoxes(playerTwoMoves);
       disableBoard();
       return;
     }
@@ -74,23 +74,20 @@ function handleBoxClick(e) {
 
 function checkWinner(playerMoves) {
   return winningCombos.some(combo =>
-    combo.every(id => playerMoves.includes(id))
+    combo.every(num => playerMoves.includes(num))
   );
 }
 
-function getWinningCombo(playerMoves) {
+function highlightBoxes(moves) {
+  // Find the winning combo to highlight
   for (let combo of winningCombos) {
-    if (combo.every(id => playerMoves.includes(id))) {
-      return combo;
+    if (combo.every(num => moves.includes(num))) {
+      combo.forEach(id => {
+        document.getElementById(id.toString()).classList.add("win-box");
+      });
+      break;
     }
   }
-  return [];
-}
-
-function highlightWinningBoxes(combo) {
-  combo.forEach(id => {
-    document.getElementById(id).classList.add("win-box");
-  });
 }
 
 function disableBoard() {
