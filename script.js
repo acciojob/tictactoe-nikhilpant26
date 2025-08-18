@@ -47,7 +47,7 @@ const player1Input = document.getElementById("player-1");
         box.textContent = "X";
         playerOneClicks.push(boxId);
         if (checkWinner(playerOneClicks)) {
-          playerTurnInfo.textContent = `${player1} wins! 🎉`;
+          playerTurnInfo.textContent = `${player1} congratulations you won! `;
           disableBoard();
           return;
         }
@@ -57,7 +57,7 @@ const player1Input = document.getElementById("player-1");
         box.textContent = "O";
         playerTwoClicks.push(boxId);
         if (checkWinner(playerTwoClicks)) {
-          playerTurnInfo.textContent = `${player2} wins! 🎉`;
+          playerTurnInfo.textContent = `${player2} congratulations you won! `;
           disableBoard();
           return;
         }
