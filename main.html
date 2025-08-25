@@ -130,8 +130,8 @@
     const cellValues = {};
 
     submitBtn.addEventListener('click', () => {
-      player1 = document.getElementById('player1').value.trim();
-      player2 = document.getElementById('player2').value.trim();
+      player1 = "Player1"
+      player2 = "Player2";
 
       if (!player1 || !player2) {
         alert("Please enter names for both players.");
@@ -156,7 +156,7 @@
 
         const winner = checkWinner();
         if (winner) {
-          message.textContent = `${currentPlayer.toLowerCase()}, congratulations you won!`;
+          message.textContent = `${currentPlayer} congratulations you won!`;
           highlightWinner(winner);
           gameActive = false;
           return;
@@ -180,7 +180,7 @@
         currentPlayer = player1;
         currentSymbol = 'X';
       }
-      message.textContent = `${currentPlayer.toLowerCase()}, you're up`;
+      message.textContent = `${currentPlayer}, you're up`;
     }
 
     function checkWinner() {
