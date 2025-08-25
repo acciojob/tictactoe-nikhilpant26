@@ -1,5 +1,5 @@
-const player1Input = document.getElementById("player-1");
-const player2Input = document.getElementById("player-2");
+const player1Input = document.getElementById("player1");
+const player2Input = document.getElementById("player2");
 const form = document.getElementById("form-container");
 const gameContainer = document.getElementById("game-container");
 const playerTurnInfo = document.getElementById("player-turn-info");
