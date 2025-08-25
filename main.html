@@ -81,9 +81,9 @@
 
     <div class="input-section" id="input-section">
       <label>Player 1</label><br>
-      <input type="text" id="player-1" placeholder="enter name"><br>
+      <input type="text" id="player1" placeholder="enter name"><br>
       <label>Player 2</label><br>
-      <input type="text" id="player-2" placeholder="enter name"><br><br>
+      <input type="text" id="player2" placeholder="enter name"><br><br>
       <button id="submit">Start Game</button>
     </div>
 
@@ -130,8 +130,8 @@
     const cellValues = {};
 
     submitBtn.addEventListener('click', () => {
-      player1 = document.getElementById('player-1').value.trim();
-      player2 = document.getElementById('player-2').value.trim();
+      player1 = document.getElementById('player1').value.trim();
+      player2 = document.getElementById('player2').value.trim();
 
       if (!player1 || !player2) {
         alert("Please enter names for both players.");
